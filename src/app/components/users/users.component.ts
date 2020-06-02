@@ -128,8 +128,4 @@ export class UsersComponent implements OnInit {
       }
     })
   }
-
-  onProfileclick() {
-
-  }
 }

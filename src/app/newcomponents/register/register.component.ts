@@ -82,7 +82,6 @@ export class RegisterComponent implements OnInit {
           this.AdminList = JSON.parse(localStorage.getItem("adminlist"));
           let b = _.find(this.AdminList, a => a.email == data.email);
           if (!!b) {
-            // this.toast.error("This Email Id Is Already Registered");
             Swal.fire('Oops...', 'This Email Id Is Already Registered', 'error');
           }
           else {

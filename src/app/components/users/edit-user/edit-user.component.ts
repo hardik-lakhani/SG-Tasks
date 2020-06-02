@@ -2,7 +2,6 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-// import * as _ from 'lodash';
 import * as _ from 'lodash';
 import Swal from 'sweetalert2';
 @Component({
@@ -58,10 +57,8 @@ export class EditUserComponent implements OnInit {
         this.dialogRef.close();
       }
       else {
-        // this.UserList = JSON.parse(localStorage.getItem("userlist"));
         let b = _.find(this.UserList, a => a.email == details.email);
         if (!!b) {
-          // this.toast.error("This Email Id Is Already Registered");
           Swal.fire('Oops...', 'This Email Id Is Already taken Someone', 'error');
         }
         else {

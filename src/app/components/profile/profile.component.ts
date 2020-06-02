@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import * as _ from 'lodash';
@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit {
   AdminList: any = [];
   Picture: any;
   Showbutton=true;
+  submitted=false;
   constructor(private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
@@ -31,11 +32,11 @@ export class ProfileComponent implements OnInit {
     }
     else if (!!this.Profile) {
       this.updateForm = this.fb.group({
-        firstName: [this.Profile.firstName],
-        lastName: [this.Profile.lastName],
-        username: [this.Profile.username],
-        email: [this.Profile.email],
-        password: [this.Profile.password]
+        firstName: [this.Profile.firstName,Validators.required],
+        lastName: [this.Profile.lastName,Validators.required],
+        username: [this.Profile.username,Validators.required],
+        email: [this.Profile.email,[Validators.required,Validators.email]],
+        password: [this.Profile.password,[Validators.required,Validators.minLength(6)]]
       })
 
   
@@ -60,6 +61,8 @@ export class ProfileComponent implements OnInit {
   }
 
   onUpdate(data) {
+    this.submitted=true;
+    if(this.updateForm.valid){
       let l = this.Profile.usertype;
       if (l == "user") {
         let stored = Object.assign(this.test, data);
@@ -87,6 +90,8 @@ export class ProfileComponent implements OnInit {
         this.router.navigate(['/login']);
         localStorage.removeItem("logged-user");
       }
+    }
+     
    
   }
   onLogout() {

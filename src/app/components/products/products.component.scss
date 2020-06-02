@@ -8,7 +8,6 @@ mat-drawer-container {
 }
 
 .example-card {
-    // max-width: 300px;
     height: 151px;
     margin: 10px;
     background-color: beige;
@@ -16,12 +15,9 @@ mat-drawer-container {
 }
 
 .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
     background-size: cover;
-    /* margin-bottom: 7px; */
     margin-top: 18px;
     height: 58px;
-    /* margin: 10px 6px; */
     width: 59px;
 }
 

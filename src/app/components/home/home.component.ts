@@ -128,9 +128,4 @@ export class HomeComponent implements OnInit, AfterViewInit {
       }
     })
   }
-
-
-  onProfileclick() {
-    this.router.navigate(['/profile']);
-  }
 }

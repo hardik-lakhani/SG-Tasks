@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -32,7 +32,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
     UsersRoutingModule,
     AgGridModule,
     NgxPaginationModule,
-
     MatInputModule,
     MatFormFieldModule,
     MatCardModule,
@@ -51,7 +50,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
     MatSidenavModule,
     MatGridListModule,
     MatDialogModule,
-    // HeaderModule
     SharedModule
   ],
   declarations: [UsersComponent, AddUserComponent, EditUserComponent],

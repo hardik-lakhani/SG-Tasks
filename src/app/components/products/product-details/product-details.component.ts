@@ -57,7 +57,6 @@ export class ProductDetailsComponent implements OnInit {
         prefill: {
           "name": this.LoggedUser.firstName + " " + this.LoggedUser.lastName,
           "email": this.LoggedUser.email,
-          // "contact": this.shared.customerData.customers_telephone,
 
         },
         notes: {},
@@ -98,8 +97,5 @@ export class ProductDetailsComponent implements OnInit {
     this.location.back();
    }
   
-  }
-  imageHover(ev) {
-    // console.log(ev)
   }
 }

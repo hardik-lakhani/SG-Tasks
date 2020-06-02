@@ -77,9 +77,6 @@ export class ProductsComponent implements OnInit {
 
   }
 
-  onProfileclick() {
-    this.router.navigate(['/profile']);
-  }
   onCardClick(data) {
     let index = this.productsDisplayed.findIndex(x => x.name === data.name);
    localStorage.setItem("product-details",JSON.stringify(data));
