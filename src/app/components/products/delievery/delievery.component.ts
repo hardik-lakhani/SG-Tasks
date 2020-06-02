@@ -24,10 +24,10 @@ export class DelieveryComponent implements OnInit {
     $('.navbar-toggler').hide();
     this.ChooseProduct = JSON.parse(localStorage.getItem("cod-item"))
     this.delieveryForm = new FormGroup({
-      'firstName': new FormControl('Satish Gupta', Validators.required),
-      'email': new FormControl('sg95144@gmail.com', Validators.compose([Validators.required, Validators.email])),
-      'mob': new FormControl('989802141', Validators.compose([Validators.required, Validators.pattern('[6789][0-9]{9}')])),
-      'address': new FormControl('tetstetsttetstetstets', Validators.compose([Validators.required, Validators.minLength(20)])),
+      'firstName': new FormControl('', Validators.required),
+      'email': new FormControl('', Validators.compose([Validators.required, Validators.email])),
+      'mob': new FormControl('', Validators.compose([Validators.required, Validators.pattern('[6789][0-9]{9}')])),
+      'address': new FormControl('', Validators.compose([Validators.required, Validators.minLength(20)])),
     })
 
 
