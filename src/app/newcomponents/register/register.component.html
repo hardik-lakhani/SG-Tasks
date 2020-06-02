@@ -19,6 +19,8 @@
                     <!-- <div class="form-group"> -->
                     <label for="file">Choose File</label>
                     <input type="file" (change)="fileChanged($event)" formControlName="picture">
+                    <p class="error-text" *ngIf="submitted && registerForm.controls?.picture?.errors?.required">*Profile picture is Required
+
                 </div>
                 <hr>
                 <!-- <div class="form-group"> -->
