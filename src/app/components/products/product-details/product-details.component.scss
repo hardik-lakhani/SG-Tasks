@@ -1,0 +1,22 @@
+.example-card {
+    max-width: 500px;
+    // text-align: center;
+}
+
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
+
+mat-card-title {
+    font-size: xx-large;
+    font-family: cursive;
+}
+
+.error-text {
+    color: #ca4040;
+    margin: 0px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-align: left;
+}
