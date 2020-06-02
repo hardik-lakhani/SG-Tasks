@@ -82,7 +82,6 @@ export class ProductsComponent implements OnInit {
   }
   onCardClick(data) {
     let index = this.productsDisplayed.findIndex(x => x.name === data.name);
-    console.log(index+1);
    localStorage.setItem("product-details",JSON.stringify(data));
     this.router.navigate(['/products/',index+1]);
   }

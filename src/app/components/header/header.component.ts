@@ -50,4 +50,8 @@ export class HeaderComponent implements OnInit {
   onUsers(){
     this.router.navigate(['/users']);
   }
+  onOrdered(){
+    this.router.navigate(['/order']);
+
+  }
 }

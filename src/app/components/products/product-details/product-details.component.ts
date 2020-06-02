@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
+import * as _ from 'lodash';
+
 declare var $: any;
 
 declare var Razorpay: any;
@@ -19,8 +21,9 @@ export class ProductDetailsComponent implements OnInit {
   payment = false;
   gender = null;
   idno: any;
-  CheckoutForm:FormGroup;
-  constructor(private route: ActivatedRoute, private router: Router,private fb:FormBuilder,private location:Location) {
+  OrderedItem: any = [];
+  CheckoutForm: FormGroup;
+  constructor(private route: ActivatedRoute, private router: Router, private fb: FormBuilder, private location: Location) {
     this.idno = this.route.snapshot.params['id'];
 
   }
@@ -28,24 +31,22 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
     $('.navbar-toggler').hide();
     this.ProductList = JSON.parse(localStorage.getItem("product-details"));
-    console.log(this.ProductList);
     this.LoggedUser = JSON.parse(localStorage.getItem("logged-user"));
-    this.CheckoutForm=this.fb.group({
-      payment:['cod',Validators.required]
+    this.CheckoutForm = this.fb.group({
+      payment: ['cod', Validators.required]
     })
 
   }
 
   onCheckout(data, type) {
-    // this.submitted=true;
     $("#exampleModalCenter").modal("hide");
-    console.log(data);
-    console.log(type)
+   
     if (type == "cod") {
-  
-      this.router.navigate(['/products/' + this.idno + '/case-on-delivey'])
+      this.router.navigate(['/products/' + this.idno + '/case-on-delivey']);
+      localStorage.setItem("cod-item", JSON.stringify(data));
     }
     else {
+      this.test = JSON.stringify(data)
       var options = {
         key: "rzp_test_NVDmQrhcK04sZO",
         amount: data.price * 100,
@@ -63,6 +64,7 @@ export class ProductDetailsComponent implements OnInit {
         theme: {
           color: "blue"
         },
+
         handler: this.paymentResponseHander.bind(this)
 
       };
@@ -76,12 +78,28 @@ export class ProductDetailsComponent implements OnInit {
   }
   paid() { alert(); }
   paymentResponseHander(response) {
-    console.log(response)
-    console.log(response.razorpay_payment_id);
+
+    let type = { type: "online" }
+    let p = _.merge(JSON.parse(this.test), type)
+    let pay={paymentid:response.razorpay_payment_id}
+    let m = _.merge(this.LoggedUser, p,pay);
+   let t=JSON.parse(localStorage.getItem("odered-item"));
+   if(t==null){
+    this.OrderedItem.push(m);
+    localStorage.setItem("odered-item", JSON.stringify(this.OrderedItem));
     Swal.fire('Great', 'Your Payment Was Successfull', 'success');
     this.location.back();
+   }
+   else{
+    this.OrderedItem = JSON.parse(localStorage.getItem("odered-item"));
+    this.OrderedItem.push(m);
+    localStorage.setItem("odered-item", JSON.stringify(this.OrderedItem));
+    Swal.fire('Great', 'Your Payment Was Successfull', 'success');
+    this.location.back();
+   }
+  
   }
-  imageHover(ev){
-    console.log(ev)
+  imageHover(ev) {
+    // console.log(ev)
   }
 }

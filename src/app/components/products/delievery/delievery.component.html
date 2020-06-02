@@ -14,8 +14,8 @@
                             <form [formGroup]="delieveryForm">
                                 <div class="form-group">
                                     <label>Full Name</label>
-                                    <input type="text" class="form-control" formControlName="name" placeholder="Enter Full Name">
-                                    <p class="error-text" *ngIf="submitted && delieveryForm.controls?.name?.errors?.required">*Name is Required
+                                    <input type="text" class="form-control" formControlName="firstName" placeholder="Enter Full Name">
+                                    <p class="error-text" *ngIf="submitted && delieveryForm.controls?.firstName?.errors?.required">*Name is Required
                                     </p>
 
                                 </div>

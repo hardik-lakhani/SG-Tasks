@@ -21,10 +21,9 @@ import { EditComponent } from './components/edit/edit.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatIconModule } from '@angular/material/icon';
-// import { HeaderModule } from './components/header/header.component.module';
 import { SharedModule } from './shared/shared.module';
 import { HeaderComponent } from './components/header/header.component';
-// import { UsersComponent } from './components/users/users.component';
+import { OrderComponent } from './components/order/order.component';
 
 
 
@@ -32,7 +31,7 @@ import { HeaderComponent } from './components/header/header.component';
   declarations: [
     AppComponent,
     AddComponent,
-    EditComponent
+    EditComponent,
 
   ],
   imports: [
