@@ -23,26 +23,33 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     $('.navbar-toggler').hide();
-    document.getElementById('mySidenav').style.visibility = 'hidden';
-    let t = JSON.parse(localStorage.getItem("logged-user"));
-    if (t == null) {
-      Swal.fire('Oops...', 'No User Found', 'error');
-      this.router.navigate(['/login'])
+    let p = JSON.parse(localStorage.getItem("product-list"));
+    if (!!p) {
+      this.productsDisplayed = JSON.parse(localStorage.getItem("product-list"));
+      this.dataSource = new MatTableDataSource<MatCard>(this.productsDisplayed);
     }
     else {
-      this.User = t;
-      let p = JSON.parse(localStorage.getItem("product-list"));
-      if (!!p) {
-        this.productsDisplayed = JSON.parse(localStorage.getItem("product-list"));
-        this.dataSource = new MatTableDataSource<MatCard>(this.productsDisplayed);
-      }
-      else {
-
-      }
-
-
 
     }
+    // let t = JSON.parse(localStorage.getItem("logged-user"));
+    // if (t == null) {
+    //   Swal.fire('Oops...', 'No User Found', 'error');
+    //   this.router.navigate(['/login'])
+    // }
+    // else {
+    //   this.User = t;
+    //   let p = JSON.parse(localStorage.getItem("product-list"));
+    //   if (!!p) {
+    //     this.productsDisplayed = JSON.parse(localStorage.getItem("product-list"));
+    //     this.dataSource = new MatTableDataSource<MatCard>(this.productsDisplayed);
+    //   }
+    //   else {
+
+    //   }
+
+
+
+    // }
 
 
   }

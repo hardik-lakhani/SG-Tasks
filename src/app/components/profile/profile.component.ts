@@ -24,6 +24,7 @@ export class ProfileComponent implements OnInit {
   constructor(private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
+    $('.navbar-toggler').hide();
     this.Profile = JSON.parse(localStorage.getItem("logged-user"));
     if (this.Profile == null) {
       Swal.fire('No User Found ', 'Please Login Again', 'error');

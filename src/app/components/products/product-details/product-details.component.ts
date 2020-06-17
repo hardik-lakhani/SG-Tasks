@@ -30,11 +30,19 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     $('.navbar-toggler').hide();
-    this.ProductList = JSON.parse(localStorage.getItem("product-details"));
-    this.LoggedUser = JSON.parse(localStorage.getItem("logged-user"));
-    this.CheckoutForm = this.fb.group({
-      payment: ['cod', Validators.required]
-    })
+    let p = JSON.parse(localStorage.getItem("product-details"));
+
+    if(p==null){
+
+    }
+    else{
+      this.ProductList = JSON.parse(localStorage.getItem("product-details"));
+      this.LoggedUser = JSON.parse(localStorage.getItem("logged-user"));
+      this.CheckoutForm = this.fb.group({
+        payment: ['cod', Validators.required]
+      })
+    }
+    
 
   }
 
@@ -75,9 +83,8 @@ export class ProductDetailsComponent implements OnInit {
 
 
   }
-  paid() { alert(); }
-  paymentResponseHander(response) {
 
+  paymentResponseHander(response) {
     let type = { type: "online" }
     let p = _.merge(JSON.parse(this.test), type)
     let pay={paymentid:response.razorpay_payment_id}

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProductsComponent } from './products.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { DelieveryComponent } from './delievery/delievery.component';
+import { UserguardGuard } from 'src/app/shared/userguard.guard';
 
 
 const routes: Routes = [
@@ -12,8 +13,8 @@ const routes: Routes = [
       { path: '', component: ProductsComponent },
       {
         path: ':id', children: [
-          { path: '', component: ProductDetailsComponent },
-          { path: 'case-on-delivey', component: DelieveryComponent },
+          { path: '', component: ProductDetailsComponent, canActivate: [UserguardGuard] },
+          { path: 'case-on-delivey', component: DelieveryComponent, canActivate: [UserguardGuard] },
         ],
       },
     ],

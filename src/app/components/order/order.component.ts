@@ -32,22 +32,30 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.LoggedUser = JSON.parse(localStorage.getItem("logged-user"));
-
-    if (this.LoggedUser == null) {
-      Swal.fire('Oops...', 'Admin Please Login First', 'error');
-      this.router.navigate(['/login'])
+    let p = JSON.parse(localStorage.getItem("odered-item"));
+    if (!!p) {
+      this.OrderList = JSON.parse(localStorage.getItem("odered-item"));
+      this.dataSource = new MatTableDataSource(this.OrderList);
     }
     else {
-      let p = JSON.parse(localStorage.getItem("odered-item"));
-      if (!!p) {
-        this.OrderList = JSON.parse(localStorage.getItem("odered-item"));
-        this.dataSource = new MatTableDataSource(this.OrderList);
-      }
-      else {
 
-      }
     }
+    // this.LoggedUser = JSON.parse(localStorage.getItem("logged-user"));
+
+    // if (this.LoggedUser == null) {
+    //   Swal.fire('Oops...', 'Admin Please Login First', 'error');
+    //   this.router.navigate(['/login'])
+    // }
+    // else {
+    //   let p = JSON.parse(localStorage.getItem("odered-item"));
+    //   if (!!p) {
+    //     this.OrderList = JSON.parse(localStorage.getItem("odered-item"));
+    //     this.dataSource = new MatTableDataSource(this.OrderList);
+    //   }
+    //   else {
+
+    //   }
+    // }
 
 
   }

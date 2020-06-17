@@ -11,18 +11,18 @@
                         <div class="col">
                             <b class="card-subtitle mb-2 text-muted" *ngIf="UserList==null">Total User: 0</b>
 
-                            <b class="card-subtitle mb-2 text-muted" *ngIf="!!UserList">Total Users: {{UserList.length}}</b>
+                            <b class="card-subtitle mb-2 text-muted" *ngIf="!!UserList">Total Users:
+                                {{UserList.length}}</b>
                             <button (click)="convertUserList()" *ngIf="!!UserList" class="btn btn-primary   pull-center" style="float: center;">Download as
-                pdf</button>
-
+                                pdf</button>
                         </div>
                         <div class="col">
                             <b class="card-subtitle mb-2 text-muted" *ngIf="AdminList==null">Total Admin: 0</b>
-                            <b class="card-subtitle mb-2 text-muted" *ngIf="!!AdminList">Total Admins: {{AdminList.length}}</b>
+                            <b class="card-subtitle mb-2 text-muted" *ngIf="!!AdminList">Total Admins:
+                                {{AdminList.length}}</b>
                             <button (click)="convertAdminList()" *ngIf="!!AdminList" class="btn btn-primary  pull-center" style="float: center;">Download
-                as
-                pdf</button>
-
+                                as
+                                pdf</button>
                         </div>
                     </div>
 

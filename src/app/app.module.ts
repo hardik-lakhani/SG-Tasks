@@ -5,11 +5,9 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-// import { MaterialModule } from './material/material.module';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
-import { ProductsComponent } from './components/products/products.component';
 import { MatButtonModule } from '@angular/material/button';
 import { AddComponent } from './components/add/add.component';
 import { MatTableModule } from '@angular/material/table';
@@ -22,8 +20,6 @@ import { AgGridModule } from 'ag-grid-angular';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatIconModule } from '@angular/material/icon';
 import { SharedModule } from './shared/shared.module';
-import { HeaderComponent } from './components/header/header.component';
-import { OrderComponent } from './components/order/order.component';
 
 
 

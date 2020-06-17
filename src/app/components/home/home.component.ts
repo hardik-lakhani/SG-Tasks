@@ -35,22 +35,30 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.LoggedUser = JSON.parse(localStorage.getItem("logged-user"));
-
-    if (this.LoggedUser == null) {
-      Swal.fire('Oops...', 'Admin Please Login First', 'error');
-      this.router.navigate(['/login'])
+    let p = JSON.parse(localStorage.getItem("product-list"));
+    if (!!p) {
+      this.productsList = JSON.parse(localStorage.getItem("product-list"));
+      this.dataSource = new MatTableDataSource(this.productsList);
     }
     else {
-      let p = JSON.parse(localStorage.getItem("product-list"));
-      if (!!p) {
-        this.productsList = JSON.parse(localStorage.getItem("product-list"));
-        this.dataSource = new MatTableDataSource(this.productsList);
-      }
-      else {
 
-      }
     }
+    // this.LoggedUser = JSON.parse(localStorage.getItem("logged-user"));
+
+    // if (this.LoggedUser == null) {
+    //   Swal.fire('Oops...', 'Admin Please Login First', 'error');
+    //   this.router.navigate(['/login'])
+    // }
+    // else {
+    //   let p = JSON.parse(localStorage.getItem("product-list"));
+    //   if (!!p) {
+    //     this.productsList = JSON.parse(localStorage.getItem("product-list"));
+    //     this.dataSource = new MatTableDataSource(this.productsList);
+    //   }
+    //   else {
+
+    //   }
+    // }
 
 
   }
@@ -108,7 +116,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         if (ind !== -1) {
           this.productsList.splice(ind, 1)
         }
-       
+
         localStorage.setItem("product-list", JSON.stringify(this.productsList));
         this.ngOnInit();
         this.dataSource.paginator = this.paginator;

@@ -30,21 +30,29 @@ export class UsersComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.LoggedUser = JSON.parse(localStorage.getItem("logged-user"));
-    if (this.LoggedUser == null) {
-      Swal.fire('Oops...', 'Admin Please Login First', 'error');
-      this.router.navigate(['/login'])
+    let p = JSON.parse(localStorage.getItem("userlist"));
+    if (!!p) {
+      this.UserList = JSON.parse(localStorage.getItem("userlist"));
+      this.dataSource = new MatTableDataSource(this.UserList);
     }
     else {
-      let p = JSON.parse(localStorage.getItem("userlist"));
-      if (!!p) {
-        this.UserList = JSON.parse(localStorage.getItem("userlist"));
-        this.dataSource = new MatTableDataSource(this.UserList);
-      }
-      else {
 
-      }
     }
+    // this.LoggedUser = JSON.parse(localStorage.getItem("logged-user"));
+    // if (this.LoggedUser == null) {
+    //   Swal.fire('Oops...', 'Admin Please Login First', 'error');
+    //   this.router.navigate(['/login'])
+    // }
+    // else {
+    //   let p = JSON.parse(localStorage.getItem("userlist"));
+    //   if (!!p) {
+    //     this.UserList = JSON.parse(localStorage.getItem("userlist"));
+    //     this.dataSource = new MatTableDataSource(this.UserList);
+    //   }
+    //   else {
+
+    //   }
+    // }
 
   }
   applyFilter(event: Event) {
@@ -102,7 +110,7 @@ export class UsersComponent implements OnInit {
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.value) {
-        
+
         var ind = this.UserList.findIndex(function (element) {
           return element.firstName === id.firstName;
         })

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './shared/auth.guard';
+import { UserguardGuard } from './shared/userguard.guard';
 
 
 const routes: Routes = [
@@ -18,15 +20,18 @@ const routes: Routes = [
   },
   {
     path: 'users',
-    loadChildren: () => import('../app/components/users/users.component.module').then(m => m.UsersModule)
+    loadChildren: () => import('../app/components/users/users.component.module').then(m => m.UsersModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'home',
-    loadChildren: () => import('../app/components/home/home.component.module').then(m => m.HomedModule)
+    loadChildren: () => import('../app/components/home/home.component.module').then(m => m.HomedModule),
+    canActivate: [AuthGuard]  
   },
   {
     path: 'products',
-    loadChildren: () => import('../app/components/products/products.component.module').then(m => m.ProductsModule)
+    loadChildren: () => import('../app/components/products/products.component.module').then(m => m.ProductsModule),
+    canActivate: [UserguardGuard]
   },
   {
     path: 'profile',
@@ -34,7 +39,8 @@ const routes: Routes = [
   },
   {
     path: 'order',
-    loadChildren: () => import('../app/components/order/order.component.module').then(m => m.OrderModule)
+    loadChildren: () => import('../app/components/order/order.component.module').then(m => m.OrderModule),
+    canActivate: [AuthGuard]  
   },
 
 ];
