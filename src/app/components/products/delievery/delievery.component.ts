@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import * as _ from 'lodash';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { formatDate } from '@angular/common';
 
 
 declare var $: any;
@@ -17,7 +19,13 @@ export class DelieveryComponent implements OnInit {
   submitted = false;
   ChooseProduct: any;
   OrderedItem: any = [];
-  constructor(private fb: FormBuilder, private router: Router) { }
+  LoggedUser: any = [];
+  UserOrderedItem: any = [];
+  constructor(private fb: FormBuilder, 
+    private router: Router,
+    public db: AngularFireDatabase
+    
+    ) { }
 
   ngOnInit(): void {
     $('.navbar-toggler').hide();
@@ -29,28 +37,45 @@ export class DelieveryComponent implements OnInit {
       'address': new FormControl('', Validators.compose([Validators.required, Validators.minLength(20)])),
     })
 
-
+    this.LoggedUser = JSON.parse(localStorage.getItem("logged-user"));
   }
   placeOrder(value) {
     this.submitted = true;
     if (this.delieveryForm.valid) {
-      let type = { type: "cod", paymentid: "Manual" }
+      let  options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      let today  = new Date();
+      let date=today.toLocaleDateString("en-US", options); 
+      let type = { type: "cod", paymentid: "Manual",transaction:date}
       let l = _.merge(this.ChooseProduct, type);
       let p = _.merge(value, l);
-      let t = JSON.parse(localStorage.getItem("odered-item"));
-      if (t == null) {
-        this.OrderedItem.push(p);
-        localStorage.setItem("odered-item", JSON.stringify(this.OrderedItem));
-        Swal.fire(value.name, 'Order Placed Successful ', 'success');
-        this.router.navigate(['/products']);
-      }
-      else {
-        this.OrderedItem = JSON.parse(localStorage.getItem("odered-item"));
-        this.OrderedItem.push(p);
-        localStorage.setItem("odered-item", JSON.stringify(this.OrderedItem));
-        Swal.fire(value.name, 'Order Placed Successful ', 'success');
-        this.router.navigate(['/products']);
-      }
+      // let t = JSON.parse(localStorage.getItem("odered-item"));
+      p.email = this.LoggedUser.email;
+      this.db.list('List').push(p);
+      // this.UserOrderedItem.push(p);
+      // localStorage.setItem("user-ordered", JSON.stringify(this.UserOrderedItem));
+      Swal.fire(value.name, 'Order Placed Successful ', 'success');
+      this.router.navigate(['/products']);
+      // if (t == null) {
+      //   this.db.list('Order-item').push(p)
+      //   this.OrderedItem.push(p);
+      //   localStorage.setItem("odered-item", JSON.stringify(this.OrderedItem));
+      //   p.email = this.LoggedUser.email;
+      //   this.db.list('List').push(p);
+      //   this.UserOrderedItem.push(p);
+      //   localStorage.setItem("user-ordered", JSON.stringify(this.UserOrderedItem));
+      //   Swal.fire(value.name, 'Order Placed Successful ', 'success');
+      //   this.router.navigate(['/products']);
+      // }
+      // else {
+      //   this.db.list('Order-item').push(p)
+      //   this.OrderedItem = JSON.parse(localStorage.getItem("odered-item"));
+      //   this.OrderedItem.push(p);
+      //   localStorage.setItem("odered-item", JSON.stringify(this.OrderedItem));
+      //   p.email = this.LoggedUser.email;
+      //   this.db.list('List').push(p);
+      //   Swal.fire(value.name, 'Order Placed Successful ', 'success');
+      //   this.router.navigate(['/products']);
+      // }
 
 
     }

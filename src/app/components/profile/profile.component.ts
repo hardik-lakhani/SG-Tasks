@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import * as _ from 'lodash';
+import { AngularFireDatabase } from '@angular/fire/database';
 declare var $: any;
 
 @Component({
@@ -18,17 +19,19 @@ export class ProfileComponent implements OnInit {
   test: any;
   Temporay: any = [];
   AdminList: any = [];
+  UserOrdered:any=[];
   Picture: any;
   Showbutton=true;
   submitted=false;
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(private fb: FormBuilder, private router: Router,private db:AngularFireDatabase) {
+   
+   }
 
   ngOnInit(): void {
-    $('.navbar-toggler').hide();
+    
     this.Profile = JSON.parse(localStorage.getItem("logged-user"));
     if (this.Profile == null) {
       Swal.fire('No User Found ', 'Please Login Again', 'error');
-
       this.router.navigate(['/login']);
     }
     else if (!!this.Profile) {
@@ -39,25 +42,18 @@ export class ProfileComponent implements OnInit {
         email: [this.Profile.email,[Validators.required,Validators.email]],
         password: [this.Profile.password,[Validators.required,Validators.minLength(6)]]
       })
-
-  
       let t = this.Profile.usertype;
-
       if (t == "user") {
-
+        $('.navbar-toggler').hide();
         this.UserList = JSON.parse(localStorage.getItem("userlist"));
         this.test = _.find(this.UserList, a => (a.email == this.Profile.email));
       }
       else if (t == "admin") {
-
         this.AdminList = JSON.parse(localStorage.getItem("adminlist"));
         this.test = _.find(this.AdminList, a => (a.email == this.Profile.email));
         this.Showbutton=false;
       }
-
     }
-
-
 
   }
 
@@ -72,8 +68,7 @@ export class ProfileComponent implements OnInit {
         Swal.fire({
           title: 'Please Login Again',
           text: 'Your Profile Has Been Update ',
-          icon: 'success',
-  
+          icon: 'success'
         })
         this.router.navigate(['/login']);
         localStorage.removeItem("logged-user");
@@ -156,6 +151,9 @@ export class ProfileComponent implements OnInit {
     };
     reader.onerror = (error) => {
     };
+  }
+  getOrderList(){ 
+    this.router.navigate(['order-list']);
   }
 
 }

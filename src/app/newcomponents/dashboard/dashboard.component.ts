@@ -92,7 +92,7 @@ export class DashboardComponent implements OnInit {
       Swal.fire('No Record Found ', '', 'error');
 
     }
-    else if (!!this.UserList) {
+    else if (!!this.AdminList) {
       this.AdminList.forEach(element => {
         let temp = [element.firstName, element.lastName, element.email, element.username];
         rows.push(temp);

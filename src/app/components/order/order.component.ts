@@ -6,7 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import Swal from 'sweetalert2';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 @Component({
   selector: 'app-order',
@@ -23,41 +23,23 @@ export class OrderComponent implements OnInit {
   showSubSubMenu: boolean = false;
   OrderList: any = [];
   LoggedUser: any;
-  displayedColumns: string[] = ['id', 'photo', 'name', 'price','buyer', 'type','paymentid'];
+  displayedColumns: string[] = ['id', 'photo', 'name', 'price', 'buyer', 'type', 'paymentid'];
   dataSource: MatTableDataSource<any>;
   @ViewChild('sidenav') sidenav: MatSidenav;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(public dialog: MatDialog, private router: Router, private toast: ToastrService) {
+  constructor(public dialog: MatDialog,
+    private router: Router,
+    private toast: ToastrService,
+    private db: AngularFireDatabase
+  ) {
   }
 
   ngOnInit(): void {
-    let p = JSON.parse(localStorage.getItem("odered-item"));
-    if (!!p) {
-      this.OrderList = JSON.parse(localStorage.getItem("odered-item"));
+    this.OrderList = this.db.list('Order-item').valueChanges().subscribe((data: any) => {
+      this.OrderList = data;
       this.dataSource = new MatTableDataSource(this.OrderList);
-    }
-    else {
-
-    }
-    // this.LoggedUser = JSON.parse(localStorage.getItem("logged-user"));
-
-    // if (this.LoggedUser == null) {
-    //   Swal.fire('Oops...', 'Admin Please Login First', 'error');
-    //   this.router.navigate(['/login'])
-    // }
-    // else {
-    //   let p = JSON.parse(localStorage.getItem("odered-item"));
-    //   if (!!p) {
-    //     this.OrderList = JSON.parse(localStorage.getItem("odered-item"));
-    //     this.dataSource = new MatTableDataSource(this.OrderList);
-    //   }
-    //   else {
-
-    //   }
-    // }
-
-
+    })
   }
 
   applyFilter(event: Event) {

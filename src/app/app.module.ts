@@ -21,6 +21,12 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { MatIconModule } from '@angular/material/icon';
 import { SharedModule } from './shared/shared.module';
 
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
+
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 
 @NgModule({
@@ -40,14 +46,16 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     NgxPaginationModule,
     MatInputModule,
-    // MaterialModule,
     MatFormFieldModule,
     MatCardModule,
     MatButtonModule,
     MatIconModule,
     MatTableModule,
     MatSortModule,
-    SharedModule
+    SharedModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireDatabaseModule
 
   ],
   providers: [],

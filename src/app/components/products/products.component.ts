@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatCard } from '@angular/material/card';
 import { Observable } from 'rxjs';
+import { formatDate } from '@angular/common';
 declare var $: any;
 @Component({
   selector: 'app-products',
