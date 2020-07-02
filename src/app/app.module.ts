@@ -27,7 +27,7 @@ import { environment } from 'src/environments/environment';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-
+import { BnNgIdleService } from 'bn-ng-idle';
 
 @NgModule({
   declarations: [
@@ -58,7 +58,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     AngularFireDatabaseModule
 
   ],
-  providers: [],
+  providers: [BnNgIdleService],
   exports: [],
   bootstrap: [AppComponent]
 })

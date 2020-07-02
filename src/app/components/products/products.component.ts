@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatCard } from '@angular/material/card';
 import { Observable } from 'rxjs';
 import { formatDate } from '@angular/common';
+import { BnNgIdleService } from 'bn-ng-idle';
 declare var $: any;
 @Component({
   selector: 'app-products',
@@ -20,7 +21,11 @@ export class ProductsComponent implements OnInit {
   productsDisplayed: any = [];
   p: number = 1;
   User: any;
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private bnIdle: BnNgIdleService
+  ) {
+   
+  }
 
   ngOnInit(): void {
     $('.navbar-toggler').hide();
@@ -87,7 +92,7 @@ export class ProductsComponent implements OnInit {
 
   onCardClick(data) {
     let index = this.productsDisplayed.findIndex(x => x.name === data.name);
-   localStorage.setItem("product-details",JSON.stringify(data));
-    this.router.navigate(['/products/',index+1]);
+    localStorage.setItem("product-details", JSON.stringify(data));
+    this.router.navigate(['/products/', index + 1]);
   }
 }

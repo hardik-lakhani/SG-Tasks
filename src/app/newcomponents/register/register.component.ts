@@ -19,12 +19,15 @@ export class RegisterComponent implements OnInit {
   UserList: any = [];
   AdminList: any = [];
   Picture: any;
+  show: boolean;
+  show1 = true;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private toast: ToastrService
-  ) {
+    private toast: ToastrService,
 
+  ) {
+    this.show = false;
   }
 
   ngOnInit() {
@@ -112,5 +115,13 @@ export class RegisterComponent implements OnInit {
     };
     reader.onerror = (error) => {
     };
+  }
+  password() {
+    this.show = !this.show;
+    this.show1 = false;
+  }
+  password1(){
+    this.show = !this.show;
+    this.show1=true;
   }
 }
