@@ -23,6 +23,8 @@ export class ProfileComponent implements OnInit {
   Picture: any;
   Showbutton=true;
   submitted=false;
+  show=false;
+  show1 = true;
   constructor(private fb: FormBuilder, private router: Router,private db:AngularFireDatabase) {
    
    }
@@ -155,5 +157,12 @@ export class ProfileComponent implements OnInit {
   getOrderList(){ 
     this.router.navigate(['order-list']);
   }
-
+  password() {
+    this.show = !this.show;
+    this.show1 = false;
+  }
+  password1(){
+    this.show = !this.show;
+    this.show1=true;
+  }
 }

@@ -2,7 +2,11 @@
 </app-header>
 <div *ngIf="ProductList">
     <div class="card" style="width: 25rem;margin: 41px 409px;">
-        <img class="card-img-top" src={{ProductList.picture}}>
+        <div class="geeks">
+
+            <img class="card-img-top" src={{ProductList.picture}}>
+        </div>
+
         <div class="card-body">
             <h2 class="card-title">{{ProductList.name}}</h2>
             <div class="price text-success" style="margin-top: -49px;

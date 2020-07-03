@@ -11,3 +11,9 @@ mat-card-title {
     font-size: xx-large;
     font-family: cursive;
 }
+
+.geeks:hover img {
+    transform: scale(1.5);
+    margin-top: 50px;
+    border-radius: 20%;
+}

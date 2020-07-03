@@ -12,7 +12,7 @@ export class UserguardGuard implements CanActivate {
   ) {
     this.bnIdle.startWatching(180).subscribe((res) => {
       if (res) {
-        Swal.fire('Session Expired', 'Pease Login Again', 'error');
+        Swal.fire('Session Expired', 'Please Login Again', 'error');
         this.router.navigate(['/login']);
         localStorage.removeItem("logged-user");
       }
