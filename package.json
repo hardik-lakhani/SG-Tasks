@@ -28,7 +28,7 @@
     "html2canvas": "^1.0.0-rc.5",
     "jspdf": "^1.5.3",
     "jspdf-autotable": "^3.5.3",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "ng2-charts": "^2.3.2",
     "ng2-image-hover-zoom": "^1.0.2",
     "ngx-pagination": "^5.0.0",
